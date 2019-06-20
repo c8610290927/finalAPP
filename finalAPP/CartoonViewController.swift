@@ -25,11 +25,26 @@ class CartoonViewController: UIViewController {
         let url = Cartoon.documentsDirectory.appendingPathComponent(cartoon.imageName).appendingPathExtension("jpg")
 
         cartoonName.text = cartoon.name
-        cartoonImage.image = UIImage(contentsOfFile: url.path)
         cartoonCreater.text = cartoon.creater
+        if cartoon.creater == "卡納赫拉"
+        {
+            let url = URL(string:cartoon.imageName)
+            cartoonImage.kf.setImage(with: url)
+        }
+        else{
+            
+            cartoonImage.image = UIImage(contentsOfFile: url.path)
+        }
         cartoonIntro.text = cartoon.intro
         cartoonGenderImage.image = UIImage(named: cartoon.gender+"Button.jpg")
-        genderText.text = cartoon.gender
+        if cartoon.gender == "questionMark"
+        {
+            genderText.text = "unknow"
+        }
+        else
+        {
+            genderText.text = cartoon.gender
+        }
 
         // Do any additional setup after loading the view.
     }

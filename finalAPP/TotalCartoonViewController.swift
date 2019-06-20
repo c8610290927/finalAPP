@@ -8,6 +8,7 @@
 
 import UIKit
 import Charts
+import Kingfisher
 
 class TotalCartoonViewController: UIViewController{
     
@@ -25,6 +26,7 @@ class TotalCartoonViewController: UIViewController{
     @IBOutlet weak var girlPersentLabel: UILabel!
     @IBOutlet weak var boyPersentLabel: UILabel!
     @IBOutlet weak var unknowPersentLabel: UILabel!
+    @IBOutlet weak var imageGIF: UIImageView!
     //特別挑選的顏色
     let colors: [UIColor] = [
         UIColor(red:1.00, green:0.53, blue:0.53, alpha:1.0),
@@ -107,6 +109,9 @@ class TotalCartoonViewController: UIViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let url = URL(string: "https://2.bp.blogspot.com/-y9-vEvyttkg/W6mpG0zhrhI/AAAAAAAMLOw/sI6ibNkwuaUVk3icg_mufr9z0yjg6wu2QCLcBGAs/s1600/AS0004444_05.gif")
+        imageGIF.kf.setImage(with:url)
 
         // Do any additional setup after loading the view.
     }

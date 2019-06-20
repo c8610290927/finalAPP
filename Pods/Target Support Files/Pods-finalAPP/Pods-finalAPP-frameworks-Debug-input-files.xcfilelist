@@ -1,2 +1,3 @@
 ${PODS_ROOT}/Target Support Files/Pods-finalAPP/Pods-finalAPP-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Charts/Charts.framework
+${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework

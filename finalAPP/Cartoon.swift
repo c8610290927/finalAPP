@@ -36,3 +36,8 @@ struct Cartoon: Codable {
         }
     }
 }
+
+struct CartoonResult: Codable{
+    var resultCount: Int
+    var results: [Cartoon]
+}

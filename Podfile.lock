@@ -2,17 +2,21 @@ PODS:
   - Charts (3.3.0):
     - Charts/Core (= 3.3.0)
   - Charts/Core (3.3.0)
+  - Kingfisher (5.6.0)
 
 DEPENDENCIES:
   - Charts
+  - Kingfisher
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Charts
+    - Kingfisher
 
 SPEC CHECKSUMS:
   Charts: e0dd4cd8f257bccf98407b58183ddca8e8d5b578
+  Kingfisher: 1a50df6880a60bae26f3e21a0df3d17b892f5e0b
 
-PODFILE CHECKSUM: a2487fcae3747f5726cc9238af0eaabb02de8775
+PODFILE CHECKSUM: 7df65ade88a7d95fbdd153402d60fb3533e8eb0f
 
 COCOAPODS: 1.7.1

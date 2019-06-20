@@ -7,4 +7,5 @@ target 'finalAPP' do
 
   # Pods for finalAPP
   pod 'Charts'
+  pod 'Kingfisher'
 end

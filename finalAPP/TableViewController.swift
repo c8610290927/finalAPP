@@ -11,6 +11,7 @@ import UIKit
 class TableViewController: UITableViewController {
     
     var cartoons = [Cartoon]()
+    var num = 0
     
     @IBAction func unwindToLoverTableView(segue: UIStoryboardSegue) {
         print("push done")
@@ -26,10 +27,43 @@ class TableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        if num < 1
+        {
+            if let urlString = "https://api.myjson.com/bins/nowy5".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed), let url = URL(string: urlString) {
+             let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+                 let decoder = JSONDecoder()
+                 if let data = data, let cartoons = try? decoder.decode([Cartoon].self, from: data) {
+                    //self.cartoons = cartoons
+                     for cartoon in cartoons{
+                        self.cartoons = cartoons
+                     }
+                    if let cartoons = Cartoon.readCartoonsFromFile() {
+                        self.cartoons = cartoons
+                        for cartoon in cartoons{
+                            self.num = self.num+1
+                         //self.cartoons.append(cartoon)
+                        }
+                        print("num = "+String(self.num))
+                    }
+                     DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                     }
+                     print(cartoons)
+                 }
+             
+                }
+                 print("hello?")
+                 task.resume()
+             }
+        }
         
         if let cartoons = Cartoon.readCartoonsFromFile() {
             self.cartoons = cartoons
+            /*for cartoon in cartoons{
+                self.cartoons.append(cartoon)
+            }*/
         }
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -64,8 +98,16 @@ class TableViewController: UITableViewController {
         let cartoon = cartoons[indexPath.row]
         cell.nameLabel?.text = cartoon.name
         print(cartoon.name)
-        let url = Cartoon.documentsDirectory.appendingPathComponent(cartoon.imageName).appendingPathExtension("jpg")
-        cell.photoImage.image = UIImage(contentsOfFile: url.path)
+        print(cartoons.count)
+        if indexPath == [0,cartoons.count-1] || indexPath == [0,cartoons.count-2]
+        {
+            let url = URL(string:cartoon.imageName)
+            cell.photoImage.kf.setImage(with: url)
+        }
+        else{
+            let url = Cartoon.documentsDirectory.appendingPathComponent(cartoon.imageName).appendingPathExtension("jpg")
+            cell.photoImage.image = UIImage(contentsOfFile: url.path)
+        }
         return cell
     }
     

@@ -66,8 +66,16 @@ class ImageCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! ImageCollectionViewCell
-        let url = Cartoon.documentsDirectory.appendingPathComponent(cartoons[indexPath.row].imageName).appendingPathExtension("jpg")
-        cell.photo.image = UIImage(contentsOfFile: url.path)?.scaleImage(scaleSize: 0.25)
+        if indexPath.row == cartoons.count-1 || indexPath.row == cartoons.count-2
+        {
+            let url = URL(string:cartoons[indexPath.row].imageName)
+            cell.photo.kf.setImage(with: url)
+            cell.photo.image?.scaleImage(scaleSize: 0.25)
+        }
+        else{
+            let url = Cartoon.documentsDirectory.appendingPathComponent(cartoons[indexPath.row].imageName).appendingPathExtension("jpg")
+            cell.photo.image = UIImage(contentsOfFile: url.path)?.scaleImage(scaleSize: 0.25)
+        }
         // Configure the cell
     
         return cell
@@ -125,7 +133,7 @@ extension UIImage {
      */
     func scaleImage(scaleSize:CGFloat)->UIImage {
         let reSize = CGSize(width: self.size.width * scaleSize, height: self.size.height * scaleSize)
-        //print("inside scaleImage")
+        print("inside scaleImage")
         return reSizeImage(reSize: reSize)
     }
     
